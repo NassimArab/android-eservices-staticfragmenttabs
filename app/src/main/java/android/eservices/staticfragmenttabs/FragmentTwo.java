@@ -1,5 +1,4 @@
 package android.eservices.staticfragmenttabs;
-
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -7,26 +6,24 @@ import android.view.ViewGroup;
 
 import androidx.fragment.app.Fragment;
 
-//TODO : fix this fragment so it works :)
-//Once it's done, then create a second fragment with the other layout
-public class FragmentOne extends Fragment {
+public class FragmentTwo extends Fragment {
 
     public static final String TAB_NAME = "ADD TO COUNTER";
 
-    public FragmentOne() {
+    public FragmentTwo() {
         //TODO
     }
 
-    public static FragmentOne newInstance() {
+    public static FragmentTwo newInstance() {
         //TODO
-        return new FragmentOne();
+        return new FragmentTwo();
     }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         ViewGroup fragmentOneView = (ViewGroup) inflater.inflate(
-                R.layout.fragment_one, container, false);
+                R.layout.fragment_two, container, false);
 
         return fragmentOneView;
     }
