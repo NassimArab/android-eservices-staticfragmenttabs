@@ -56,7 +56,6 @@ public class MainActivity extends AppCompatActivity implements FragmentOne.OnBut
                                       @Override
                                       public Fragment createFragment(int position) {
                                           if (position==0){
-
                                               return FragmentOne.newInstance();
                                           }else{
                                               return FragmentTwo.newInstance();
@@ -101,9 +100,9 @@ public class MainActivity extends AppCompatActivity implements FragmentOne.OnBut
     }
 
     @Override
-    public void onButtonClicked(View view) {
+    public void  onCounterUpdated(boolean isIncremented) {
 
-        if (view.toString().contains("button_increment"))
+        if (isIncremented == true)
             currentCounter++;
         else
             currentCounter--;

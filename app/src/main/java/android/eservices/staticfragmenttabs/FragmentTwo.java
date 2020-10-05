@@ -16,12 +16,10 @@ public class FragmentTwo extends Fragment  implements View.OnClickListener {
     @Override
     public void onClick(View view) {
         // 5 - Spread the click to the parent activity
-        mCallback.onButtonClicked(view);
+        mCallback.onCounterUpdated(false);;
     }
 
     // ----
-    private Button moins;
-
     public static final String TAB_NAME = "SUB TO COUNTER";
 
     public FragmentTwo() {
@@ -60,14 +58,14 @@ public class FragmentTwo extends Fragment  implements View.OnClickListener {
         super.onAttach(context);
 
         // 4 - Call the method that creating callback after being attached to parent activity
-        this.createCallbackToParentActivity();
+        this.createCallbackToParentActivity(context);
     }
 
     // 3 - Create callback to parent activity
-    private void createCallbackToParentActivity(){
+    private void createCallbackToParentActivity(Context context){
         try {
             //Parent activity will automatically subscribe to callback
-            mCallback = (FragmentOne.OnButtonClickedListener) getActivity();
+            mCallback = (FragmentOne.OnButtonClickedListener) context;
         } catch (ClassCastException e) {
             throw new ClassCastException(e.toString()+ " must implement OnButtonClickedListener");
         }

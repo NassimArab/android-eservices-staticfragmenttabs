@@ -19,12 +19,12 @@ public class FragmentOne extends Fragment  implements View.OnClickListener {
     @Override
     public void onClick(View view) {
         // 5 - Spread the click to the parent activity
-        mCallback.onButtonClicked(view);
+        mCallback.onCounterUpdated(true);
     }
 
     // 1 - Declare our interface that will be implemented by any container activity
     public interface OnButtonClickedListener {
-        public void onButtonClicked(View view);
+        public void onCounterUpdated(boolean isIncremented);
     }
 
     // ----
@@ -66,14 +66,14 @@ public class FragmentOne extends Fragment  implements View.OnClickListener {
         super.onAttach(context);
 
         // 4 - Call the method that creating callback after being attached to parent activity
-        this.createCallbackToParentActivity();
+        this.createCallbackToParentActivity(context);
     }
 
     // 3 - Create callback to parent activity
-    private void createCallbackToParentActivity(){
+    private void createCallbackToParentActivity(Context context){
         try {
             //Parent activity will automatically subscribe to callback
-            mCallback = (OnButtonClickedListener) getActivity();
+            mCallback = (OnButtonClickedListener) context;
         } catch (ClassCastException e) {
             throw new ClassCastException(e.toString()+ " must implement OnButtonClickedListener");
         }
