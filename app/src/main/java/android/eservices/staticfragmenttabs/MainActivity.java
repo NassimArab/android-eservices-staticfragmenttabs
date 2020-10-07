@@ -26,6 +26,8 @@ public class MainActivity extends AppCompatActivity implements FragmentOne.OnBut
     private int currentCounter;
     private TextView counterTextView;
     private int nbFragment;
+    private Fragment fragOne = null;
+    private Fragment fragTwo = null;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -51,14 +53,21 @@ public class MainActivity extends AppCompatActivity implements FragmentOne.OnBut
 
       /*  EmployeeFragmentStateAdapter adapter = new EmployeeFragmentStateAdapter(this);
         this.viewPager.setAdapter(adapter);*/
+
         this.viewPager.setAdapter(new FragmentStateAdapter(this) {
                                       @NonNull
                                       @Override
                                       public Fragment createFragment(int position) {
                                           if (position==0){
-                                              return FragmentOne.newInstance();
+                                              if (fragOne == null)
+                                                    fragOne = FragmentOne.newInstance();
+
+                                              return fragOne;
                                           }else{
-                                              return FragmentTwo.newInstance();
+                                              if (fragTwo == null)
+                                                  fragTwo = FragmentTwo.newInstance();
+
+                                              return fragTwo;
                                           }
                                       }
 
@@ -69,33 +78,10 @@ public class MainActivity extends AppCompatActivity implements FragmentOne.OnBut
                                   });
 
         TabLayout tabLayout = findViewById(R.id.tablayout);
-        new TabLayoutMediator(tabLayout, viewPager,(tab, position) -> tab.setText("Activite " + (position + 1))
+        new TabLayoutMediator(tabLayout, viewPager,(tab, position) -> tab.setText("fragment " + (position + 1))
         ).attach();
-                // viewPager.setAdapter(new EmployeeFragmentStateAdapter(getSupportFragmentManager()));
-/*
-        viewPager.setAdapter(new FragmentStatePagerAdapter(getSupportFragmentManager()) {
-            @Override
-            public Fragment getItem(int position) {
-                if (position==0){
-                    //FragmentOne f1 = FragmentOne.newInstance();
-                    //if (f1.equals(null))
-                    return FragmentOne.newInstance();
-                }else{
-                    return FragmentTwo.newInstance();
-                }
 
-            }
 
-            @Override
-            public int getCount() {
-                return 2;
-            }
-        });*/
-
-                //TODO we want two fragments with layouts : fragment_one, fragment_two.
-
-                //TODO set adapter to viewpager and handle tragment change inside
-                //viewpager.setAdapter(...);
 
     }
 
